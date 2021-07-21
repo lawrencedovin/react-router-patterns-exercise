@@ -1,10 +1,14 @@
 import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
+import ColorList from './ColorList';
+import Routes from './Routes';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
