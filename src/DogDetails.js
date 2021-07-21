@@ -1,64 +1,26 @@
-// All the dog info shows
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { Link, Redirect } from "react-router-dom";
+import "./DogDetails.css";
 
-const defaultDogs = [
-    {
-      name: "Whiskey",
-      age: 5,
-      facts: [
-        "Whiskey loves eating popcorn.",
-        "Whiskey is a terrible guard dog.",
-        "Whiskey wants to cuddle with you!"
-      ]
-    },
-    {
-      name: "Duke",
-      age: 3,
-      facts: [
-        "Duke believes that ball is life.",
-        "Duke likes snow.",
-        "Duke enjoys pawing other dogs."
-      ]
-    },
-    {
-      name: "Perry",
-      age: 4,
-      facts: [
-        "Perry loves all humans.",
-        "Perry demolishes all snacks.",
-        "Perry hates the rain."
-      ]
-    },
-    {
-      name: "Tubby",
-      age: 4,
-      facts: [
-        "Tubby is really stupid.",
-        "Tubby does not like walks.",
-        "Angelina used to hate Tubby, but claims not to anymore."
-      ]
-    }
-  ];
+function DogDetails({dog}) {
 
-function DogDetails() {
-    const {name} = useParams();
-    return(
-        <>
-            {defaultDogs.map(dog => (
-                <ul>
-                    {dog.name === name 
-                    ? 
-                    <>
-                        <li>Dog Name: {dog.name}</li>
-                        <li>Age: {dog.age}</li>
-                        {dog.facts.map(fact => <li>{fact}</li>)}
-                    </>
-                    : null}
-                </ul>
-            ))}
-        </>
-    );
+  if (!dog) return <Redirect to="/dogs"/>
+
+  return (
+    <div className="row DogDetails">
+      <div className="col d-flex flex-column align-items-center">
+        <img src={dog.src} alt={dog.name} />
+        <h2>{dog.name}</h2>
+        <h3>{dog.age} years old</h3>
+        <ul>
+          {dog.facts.map((fact, i) => (
+            <li key={i}>{fact}</li>
+          ))}
+        </ul>
+        <Link to="/dogs">Go Back</Link>
+      </div>
+    </div>
+  );
 }
 
 export default DogDetails;

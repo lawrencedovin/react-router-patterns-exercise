@@ -1,0 +1,10 @@
+.DogList {
+    text-align: center;
+}
+
+.DogList img {
+    border-radius: 100%;
+    border: 8px solid slateblue;
+    box-shadow: 0 0 10px #9e9e9e;
+  }
+  
