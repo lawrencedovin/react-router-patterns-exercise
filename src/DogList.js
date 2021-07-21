@@ -1,19 +1,10 @@
-import Nav from './Nav';
-import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
-import './App.css';
-import whiskey from './whiskey.jpg';
-import duke from './duke.jpg';
-import perry from './perry.jpg';
-import tubby from './tubby.jpg';
-import DogList from './DogList';
-import DogDetails from './DogDetails';
+// All the dog info shows
+import React from 'react';
 
-App.defaultProps = {
-  dogs: [
+const defaultDogs = [
     {
       name: "Whiskey",
       age: 5,
-      src: whiskey,
       facts: [
         "Whiskey loves eating popcorn.",
         "Whiskey is a terrible guard dog.",
@@ -23,7 +14,6 @@ App.defaultProps = {
     {
       name: "Duke",
       age: 3,
-      src: duke,
       facts: [
         "Duke believes that ball is life.",
         "Duke likes snow.",
@@ -33,7 +23,6 @@ App.defaultProps = {
     {
       name: "Perry",
       age: 4,
-      src: perry,
       facts: [
         "Perry loves all humans.",
         "Perry demolishes all snacks.",
@@ -43,33 +32,25 @@ App.defaultProps = {
     {
       name: "Tubby",
       age: 4,
-      src: tubby,
       facts: [
         "Tubby is really stupid.",
         "Tubby does not like walks.",
         "Angelina used to hate Tubby, but claims not to anymore."
       ]
     }
-  ]
-}
+  ];
 
-function App() {
+function DogList({ dogs=defaultDogs }) {
   return (
-    <>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/dogs" >
-          <DogList />
-        </Route>
-        <Route path="/dogs/:name" >
-          <DogDetails/>
-        </Route>
-        <Redirect to="/dogs" />
-      </Switch>
-    </BrowserRouter>
-    <h1>{App.dogs}</h1>
-    </>
+    <ul>
+      {dogs.map(dog => (
+          <>
+            <li>Name: {dog.name}</li>
+            <li>Age: {dog.age}</li>
+          </>
+      ))}
+    </ul>
   );
 }
 
-export default App;
+export default DogList;
